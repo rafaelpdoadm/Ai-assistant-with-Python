@@ -5,17 +5,26 @@ load_dotenv()
 
 client = anthropic.Anthropic()
 
-response = client.messages.create(
-    model="claude-opus-5",
-    max_tokens=16000,
-    messages= [
+MODEL = "claude-opus-5"
+
+def ask(text):
+    response = client.messages.create(
+        model=MODEL,
+        max_tokens=16000,
+        messages= [
         {
             "role": "user",
-            "content": "Explain what is an variable in python using two lines."
+            "content": text
         }
     ]
 )
 
-for block in response.content:
-    if block.type == "text":
-        print(blocl.text)
+    result = ""
+    for block in response.content:
+        if block.type == "text":
+            result = block.text
+
+    return result
+
+
+print(ask("O que é uma variável?"))
