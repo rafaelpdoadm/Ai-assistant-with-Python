@@ -53,6 +53,11 @@ while True:
     if text.lower() == "sair":
         print("Bons estudos!")
         break
+
+    if text.lower() == "limpar":
+        history = []
+        print("Tutor: Conversa reiniciada. Do que vamos falar agora?")
+        
     if not text:
         continue
 
